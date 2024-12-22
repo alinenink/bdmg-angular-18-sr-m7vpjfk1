@@ -1,0 +1,47 @@
+<div class="cart-container">
+  <h2>Carrinho de Compras</h2>
+
+  <mat-card *ngIf="itensCarrinho.length; else emptyCart" class="cart-table">
+    <!-- Cabeçalho -->
+    <div class="cart-header">
+      <div class="column-product">Produto</div>
+      <div class="column-quantity">Quantidade</div>
+      <div class="column-price">Preço Unitário</div>
+      <div class="column-remove">Remover</div>
+    </div>
+
+    <!-- Itens -->
+    <div *ngFor="let item of itensCarrinho" class="cart-item">
+      <div class="column-product">
+        <img [src]="item.image" alt="{{ item.title }}" />
+        <span>{{ item.title }}</span>
+      </div>
+      <div class="column-quantity">
+        <button class="counter-button minus-button" (click)="diminueQuantidade(item)">-</button>
+        <span class="counter-value">{{ item.quantity }}</span>
+        <button class="counter-button plus-button" (click)="aumentaQuantidade(item)">+</button>
+      </div>
+      <div class="column-price">
+        <span>{{ item.price | currency }}</span>
+      </div>
+      <div class="column-remove">
+        <button class="remove-icon" (click)="confirmacaoExclusao(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <ng-template #emptyCart>
+    <p>O carrinho está vazio.</p>
+  </ng-template>
+
+  <!-- Rodapé do Carrinho -->
+  <div class="cart-footer" *ngIf="itensCarrinho.length">
+    <span><strong>Total:</strong> {{ valorTotal | currency }}</span>
+  </div>  
+  
+  <div class="checkout-footer">
+    <button *ngIf="itensCarrinho.length" class="add-to-cart-button" (click)="redirecionarCheckout()">Checkout</button>
+  </div>
+</div>
