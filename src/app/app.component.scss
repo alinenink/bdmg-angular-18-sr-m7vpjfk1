@@ -1,0 +1,68 @@
+.custom-toolbar {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  z-index: 1000; 
+  background-color: #b3cde0; 
+  color: white;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+}
+
+@media (min-width: 601px) { 
+  .menu {
+    height: 3em;
+  }
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cart-count {
+  background-color: #b3cde0; 
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.content {
+  margin-top: 64px; 
+  padding: 24px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .header-grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}

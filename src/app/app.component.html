@@ -1,0 +1,17 @@
+<mat-toolbar class="custom-toolbar">
+  <div class="header-grid">
+    <span class="logo">E-Commerce</span>
+    <nav class="menu">
+      <a mat-button routerLink="/products">Products</a>
+      <a mat-button routerLink="/cart">
+        Cart <span class="cart-count" *ngIf="cartCount > 0">({{ cartCount }})</span>
+      </a>
+      <a mat-button routerLink="/checkout">Checkout</a>
+      <a mat-button routerLink="/orders">Orders</a>
+    </nav>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

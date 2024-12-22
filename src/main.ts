@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(),
-    importProvidersFrom(BrowserAnimationsModule),
-    importProvidersFrom(MatNativeDateModule),
+    importProvidersFrom(BrowserAnimationsModule, MatNativeDateModule),
   ],
 }).catch((err) => console.error(err));
+
