@@ -1,0 +1,182 @@
+<div class="checkout-container">
+  <h2>Finalizar Pedido</h2>
+
+  <!-- Layout para Desktop -->
+  <mat-card class="checkout-table" *ngIf="itensCarrinho.length > 0; else emptyCart">
+    <div class="cart-header">
+      <div class="column-product">Produto</div>
+      <div class="column-quantity">Quantidade</div>
+      <div class="column-price">Preço Unitário</div>
+    </div>
+
+    <div *ngFor="let item of itensCarrinho" class="cart-item">
+      <div class="column-product">
+        <img [src]="item.image" alt="{{ item.title }}" />
+        <span>{{ item.title }}</span>
+      </div>
+      <div class="column-quantity">
+        <span>{{ item.quantity }}</span>
+      </div>
+      <div class="column-price">
+        <span>{{ item.price | currency }}</span>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Layout para Mobile -->
+  <div class="checkout-items-mobile" *ngIf="itensCarrinho.length > 0">
+    <div *ngFor="let item of itensCarrinho" class="checkout-item">
+      <img class="product-image" [src]="item.image" alt="{{ item.title }}" />
+      <div class="product-details">
+        <p>{{ item.title }}</p>
+        <p><strong>Quantidade:</strong> {{ item.quantity }}</p>
+        <p><strong>Preço:</strong> {{ item.price | currency }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total e Formulário -->
+  <div *ngIf="itensCarrinho.length > 0">
+    <div class="checkout-footer">
+      <span><strong>Total:</strong> {{ valorTotal | currency }}</span>
+    </div>
+
+     <!-- Formulário -->
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="checkout-form">
+    <h3>Dados do Cliente</h3>
+
+    <div class="form-field">
+      <label for="name">Nome Completo *</label>
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        placeholder="Digite seu nome completo"
+        [class.error]="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched" class="error-message">
+        Nome é obrigatório.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email *</label>
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="exemplo@dominio.com"
+        [class.error]="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched" class="error-message">
+        Email inválido.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="phone">Telefone *</label>
+      <input
+        id="phone"
+        formControlName="phone"
+        type="text"
+        placeholder="(11) 99999-9999"
+        (blur)="formataTelefone()"
+        [class.error]="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched" class="error-message">
+        Telefone inválido.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="cep">CEP *</label>
+      <input
+        id="cep"
+        formControlName="cep"
+        type="text"
+        placeholder="Digite seu CEP"
+        mask="00000-000"
+        (blur)="buscaCep()"
+        [class.error]="checkoutForm.get('cep')?.invalid && checkoutForm.get('cep')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('cep')?.invalid && checkoutForm.get('cep')?.touched" class="error-message">
+        CEP inválido.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="address">Endereço *</label>
+      <input
+        id="address"
+        formControlName="address"
+        type="text"
+        placeholder="Digite seu endereço"
+        [class.error]="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched" class="error-message">
+        Endereço é obrigatório.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="number">Número *</label>
+      <input
+        id="number"
+        formControlName="number"
+        type="text"
+        placeholder="Digite o número"
+        [class.error]="checkoutForm.get('number')?.invalid && checkoutForm.get('number')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('number')?.invalid && checkoutForm.get('number')?.touched" class="error-message">
+        Número é obrigatório.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="complement">Complemento</label>
+      <input
+        id="complement"
+        formControlName="complement"
+        type="text"
+        placeholder="Digite o complemento (opcional)"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="city">Cidade *</label>
+      <input
+        id="city"
+        formControlName="city"
+        type="text"
+        placeholder="Cidade"
+        [class.error]="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched" class="error-message">
+        Cidade é obrigatória.
+      </span>
+    </div>
+    
+    <div class="form-field">
+      <label for="state">Estado *</label>
+      <input
+        id="state"
+        formControlName="state"
+        type="text"
+        placeholder="Estado"
+        [class.error]="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched"
+      />
+      <span *ngIf="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched" class="error-message">
+        Estado é obrigatório.
+      </span>
+    </div>
+    
+
+    <button class="add-to-cart-button" type="submit">Finalizar Pedido</button>
+  </form>
+  </div>
+
+  <!-- Mensagem para Carrinho Vazio -->
+  <ng-template #emptyCart>
+    <p class="empty-cart-message">Seu carrinho está vazio. Adicione produtos para finalizar o pedido!</p>
+  </ng-template>
+</div>
