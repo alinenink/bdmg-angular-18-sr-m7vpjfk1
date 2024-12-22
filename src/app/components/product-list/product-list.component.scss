@@ -1,0 +1,119 @@
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.product-card img {
+  width: 100%; 
+  height: auto; 
+  max-height: 200px; 
+  object-fit: contain; 
+  margin-bottom: 16px;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    margin-top: 80px; 
+  }
+}
+
+.add-to-cart-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.add-to-cart-button {
+  padding: 6px 12px;
+  border: 2px solid #b3cde0;
+  border-radius: 8px;
+  background-color: white;
+  color: #b3cde0; 
+  font-size: 14px; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #b3cde0; 
+  color: black; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+span {
+  font-size: 18px;
+  font-weight: bold;
+  color: black; 
+  margin: 0 12px; 
+}
+
+.counter-button {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #b3cde0; 
+  border-radius: 8px; 
+  background-color: white;
+  color: #b3cde0; 
+  font-size: 18px;
+  font-weight: bold; 
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.counter-button:hover {
+  background-color: rgba(179, 205, 224, 0.2); 
+  color: #007bff; 
+}
+
+.counter-button:active {
+  transform: translateY(1px);
+}
+
+.minus-button {
+  margin-right: 8px; 
+}
+
+.plus-button {
+  margin-left: 8px;
+}
+
+.counter-value {
+  font-size: 18px;
+  font-weight: bold; 
+  color: black; 
+}
+
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-actions span {
+  font-size: 16px;
+  margin: 0 8px;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+<div class="product-list">
+  <mat-card *ngFor="let produto of produtos" class="product-card">
+    <img mat-card-image [src]="produto.image" [alt]="produto.title" />
+    <mat-card-content>
+      <h3>{{ produto.title }}</h3>
+      <p>{{ produto.description }}</p>
+      <p><strong>{{ produto.price | currency }}</strong></p>
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-container *ngIf="quantidadeItensFinal(produto) > 0; else addButton">
+        <button class="counter-button minus-button" (click)="removerCarrinho(produto)">-</button>
+        <span class="counter-value">{{ quantidadeItensFinal(produto) }}</span>
+        <button class="counter-button plus-button" (click)="adicionarCarrinho(produto)">+</button>
+      </ng-container>
+      <ng-template #addButton>
+        <div class="add-to-cart-container">
+          <button mat-raised-button class="add-to-cart-button" (click)="adicionarCarrinho(produto)">
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </ng-template>
+    </mat-card-actions>
+  </mat-card>
+</div>
