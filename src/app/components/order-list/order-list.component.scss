@@ -1,0 +1,36 @@
+.orders-container {
+  margin-left: 20px;
+  padding: 20px;
+}
+
+.order-card {
+  margin-bottom: 20px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination a {
+  text-decoration: underline;
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination a.disabled {
+  color: #777;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.pagination a.active:hover {
+  color: #0056b3;
+}

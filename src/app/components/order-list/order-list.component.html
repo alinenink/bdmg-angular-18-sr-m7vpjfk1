@@ -1,0 +1,48 @@
+<div class="orders-container">
+  <h2>Meus Pedidos</h2>
+
+  <ng-container *ngIf="pedidos.length > 0; else noOrders">
+    <div *ngFor="let order of orderPaginacao" class="order-card">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Pedido de {{ order.customer.name }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ order.customer.address }}, {{ order.customer.city }} - {{ order.customer.state }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let item of order.items">
+              {{ item.quantity }}x {{ item.title }} - {{ item.price | currency }}
+            </li>
+          </ul>
+          <p><strong>Total:</strong> {{ order.total | currency }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="pagination">
+      <a
+        (click)="paginaAnterior()"
+        [class.disabled]="paginaAtual === 1"
+        [class.active]="paginaAtual > 1"
+        [style.cursor]="paginaAtual === 1 ? 'not-allowed' : 'pointer'"
+      >
+        &#8592; Anterior
+      </a>
+      <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
+      <a
+        (click)="proximaPagina()"
+        [class.disabled]="paginaAtual === totalPaginas"
+        [class.active]="paginaAtual < totalPaginas"
+        [style.cursor]="paginaAtual === totalPaginas ? 'not-allowed' : 'pointer'"
+      >
+        Próxima &#8594;
+      </a>
+    </div>
+  </ng-container>
+
+  <ng-template #noOrders>
+    <p>Nenhum pedido encontrado.</p>
+  </ng-template>
+</div>
