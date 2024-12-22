@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Confirmar Remoção</h2>
+<mat-dialog-content>
+  <p>Tem certeza de que deseja remover "{{ data.item.title }}" do carrinho?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  <button mat-button class="remove-button" (click)="onRemove()">Remover</button>
+</mat-dialog-actions>
